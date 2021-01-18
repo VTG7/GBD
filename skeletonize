@@ -1,0 +1,40 @@
+# Import the necessary libraries
+import cv2
+import numpy as np
+
+def processImage(image):
+    image = cv2.imread(image)
+    image = cv2.cvtColor(src=image, code=cv2.COLOR_BGR2GRAY)
+    return image
+
+# Read the image as a grayscale image
+img = processImage('Image.jpg')
+
+# Threshold the image
+ret,img = cv2.threshold(img, 127, 255, 0)
+img.astype(np.uint8)
+#print(img.dtype)
+# Step 1: Create an empty skeleton
+size = np.size(img)
+skel = np.zeros(img.shape, dtype = np.uint8)
+
+# Get a Cross Shaped Kernel
+element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
+
+# Repeat steps 2-4
+while True:
+    #Step 2: Open the image
+    open = cv2.morphologyEx(img, cv2.MORPH_OPEN, element)
+    #Step 3: Substract open from the original image
+    temp = cv2.subtract(img, open)
+    #Step 4: Erode the original image and refine the skeleton
+    eroded = cv2.erode(img, element)
+    skel = cv2.bitwise_or(skel,temp)
+    img = eroded.copy()
+    # Step 5: If there are no white pixels left ie.. the image has been completely eroded, quit the loop
+    if cv2.countNonZero(img)==0:
+        break
+
+# Displaying the final skeleton
+
+cv2.imwrite("Skeleton_Personal.jpg",skel)    
