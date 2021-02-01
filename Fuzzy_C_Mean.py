@@ -1,5 +1,5 @@
-Main source :https://github.com/ariffyasri/fuzzy-c-means/blob/master/fuzzy-c-means-scikit-fuzzy-image.ipynb
-Modifications done to suit our case: (Made OpenCV4 compatible)(Image Resizing)(Individual file input as opposed to an entire folder))
+#Main source :https://github.com/ariffyasri/fuzzy-c-means/blob/master/fuzzy-c-means-scikit-fuzzy-image.ipynb
+#Modifications done to suit our case: (Made OpenCV4 compatible)(Image Resizing)(Individual file input as opposed to an entire folder))
 
 import numpy as np
 import matplotlib.pyplot as plt
