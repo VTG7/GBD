@@ -7,7 +7,7 @@ import cv2
 import imutils
 "load image data"
 img=cv2.imread('/content/gbdresult1.jpg')
-#img=imutils.resize(img,height=200)
+img=imutils.resize(img,height=400)
 Img_Original =  cv2.cvtColor( img,cv2.COLOR_BGR2GRAY)      # Gray image, rgb images need pre-conversion
 
 "Convert gray images to binary images using Otsu's method"
